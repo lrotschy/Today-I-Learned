@@ -1,0 +1,94 @@
+# Comparison of NoSqL databases
+
+General Characteristics of NoSQL DBs 
+- non-relational
+- open-source 
+- schema-less (really implicit schema)
+- cluster-friendly 
+- post turn of the century
+
+General advantages 
+- sharding is hard; clustering data aggregates is easy 
+- one type of aggregate is easy
+- if you're doing lots of denormalization, then maybe better
+
+General disadvantages 
+- lots of different aggregation patterns are hard
+- nothing enforcing updates in multiple spots if everything is denormalized 
+- 
+
+## Key-Value Store 
+Examples 
+
+Advantages over RDBMS 
+Disadvantages 
+Schema  
+Query language
+
+## Document 
+Examples 
+  - MongoDB
+  - Azure Cosmos DB 
+  - BaseX
+  - Couchbase SErver 
+  - Apache CouchDB 
+  - Intersystems Caché
+  - MarkLogic
+Advantages over RDBMS 
+ - More transparent structure 
+ - flexible: any information can be added to document 
+ - data is already aggregated, not spread all over db 
+ - easier to scale (why again?)
+ - fewer impedence mismatch proglems
+ - fast lookup--no joins, data that is queried together is stored together
+ - key lookup is quick 
+Disadvantages 
+- schema is not defined
+- hard to rearrange data by different aggregate roots (e.g. are sales or customers the organizing principle for aggregate data)
+Schema 
+  - Often JSON
+  - document contains id, which is like key in key-values tore
+  - aggregate
+  - can query into document and update
+  
+  
+Query language
+
+## Column 
+Examples 
+  Cassandra
+Advantages over RDBMS 
+ - schema-less?
+ - 
+Disadvantages 
+Schema 
+  - ?? single row key with multiple families??
+  - aggregate
+Query language
+
+## Graph
+Examples 
+  - neo4j
+  - Amazon Neptune 
+  - MarkLogic
+  - Oracle 
+  - OrientDB 
+  - Sqrrl Enterprise 
+  - Arango DB
+Advantages over RDBMS 
+- flexible search
+- can capture multiple types of relationships
+- M:M relationships
+- complex quries
+- changing relationships
+Disadvantages 
+- hard to do some kinds of basic searches 
+- does not cluster well in some cases
+- hard to aggregate data
+Schema 
+- smaller units rather than aggregates
+- not aggregate 
+- nodes/vertices + edges
+Query language
+- graph queries not sql
+- Java, SPARQL, etc. 
