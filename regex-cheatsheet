@@ -1,0 +1,27 @@
+Regex and #count/#delete Cheat Sheet 
+
+`/[a-z]/`   all lowercase letters
+`/[A-z]/ `  all letters
+`/[a-z]/i`   all letters
+`/[^a-z]/`   all characters except lowercase letters
+`/[^a-z]/i`   all characters except letters
+
+`/[0-9]/`   all numbers
+`/[^0-9]/`   all characters except numbers
+
+`/[^A-z0-9]/`   only non-alphanumeric characters 
+`/ /`  all spaces 
+
+
+string.delete('^a-z0-9') # => deletes all non-alphanumeric characters
+
+``` ruby 
+str = 'ABCabc   123!@#'
+p str.delete '/[^A-z0-9]/'
+p str.count 'a-z'
+p str.count 'A-z'
+p str.delete '^0-9'
+p str.delete('^a-z0-9')
+```
+
+[link](http://github.com)
