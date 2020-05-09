@@ -1,0 +1,33 @@
+# ACID
+
+## Transactions
+
+In relational databases, transactions are used as a fault tolerance mechanism. They are used to group several reads & writes into a logical unit which is executed as one operation. The entire transaction either commits or rollsback--there is no partial failure.
+
+Transactions make the following safety guarantees:
+
+- __Atomicity__ (aka abortability): a transaction is atomic. In other words, it can't be broken up into a smaller unit. This means that each read & write it encapsulates either commits or rolls back as a logical unit. Abortability enables safe retries.
+- __Consistency__: more of a feature of the applications that use a database rather than the database itself. It's up the application to define what it means for the database to be in a good state. The database can maintain some data integrity through constraints like foreign keys.
+- __Isolation__: concurrently executing transactions are isolated from one another. There are multiple levels of isolation, explained in greater detail below.
+- __Durability__: a promise that once a transaction has committed successfully, any data it has updated won't be forgotten. This can mean anything from writing the data to a disk to replicating it to another node.
+
+These safety guarantees mostly apply to multi-object transactions, basically when multiple tables need to be updated at the same time to stay consistent with one another. "A transaction is usually understood as a mechanism for grouping mlutiple operations on multiple objects into one unit of execution."
+
+## Isolation
+
+Isolation deals with concurrent transactions.
+
+Race conditions prevented by isolation levels: | Read Committed | Snapshot  | Serializable
+--- | :---: | :---: | :---:
+Dirty Reads--reads see uncommitted writes. Prevented by returning either old committed values or the new values for any transactions holding write locks on a row. | X | X | X
+Dirty Writes--writes can overwrite uncommitted writes. Prevented using row-level locks | X | X | X
+Read Skew--aka non-repeatable reads. A client sees different parts of a database at different points in time. Prevented using _multi-version concurrency control_ (MVCC) to determine which snapshot of data to show a read based on the transactions open when it started | | X | X
+Lost Updates--one client's write in a read-modify-write cycle clobbers an earlier one's. Prevented through automatic lost update detection, atomic writes, and app-level conflict resolution in replicated dbs | | X | X
+Write Skew--a transaction writes something based on the value of a read that was subsequently updated. Prevented by serialization or explicit locking at read time. | | | X
+Phantom Updates--transaction writes something based on a search query whose results became invalidated by another transaction | | | X
+
+Serializability is often implemented using one of the following three mechanisms:
+
+  1. actually serially executing each transaction. Requires small, fast transactions encapsulated as stored procedures, executed on datasets that can fit entirely in memory.
+  2. Two-Phase Locking (2PL). Locks data when transactions start & only releases when they end. Writes acquire exclusive locks. Reads acquire shared locks. Exclusive locks can only be acquired on objects with no other locks. Thus, reads block writes & writes block reads.
+  3. more recently, Serializable snapshot islation, a form of optimistic concurrency control. It's like snapshot isolation plus an algorithm for detecting serialization conflicts & choosing which transactions to abort.
