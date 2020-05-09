@@ -1,0 +1,25 @@
+# YAML Notes
+
+```ruby
+require 'yaml'
+
+# File.new("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yml", "w+")
+
+users = { "admin" => "password" }
+
+File.open("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yml", "w") { |file| file.write(users.to_yaml) }
+
+users = YAML.load(File.read("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yml"))
+
+username = "liela"
+password = "secret"
+
+users[username] = password
+
+File.open("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yml", "w") { |file| file.write(users.to_yaml) }
+
+File.delete("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yml")
+
+File.delete("/Users/lielarotschy/Documents/Programming/BackEnd/175/cms_project/practice.yaml")
+
+```
