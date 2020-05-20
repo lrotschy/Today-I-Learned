@@ -21,9 +21,10 @@ The main difference seems to be in the kind of features and functionality each o
 ## Putting it all together 
 
 According to jamstack.org, an application cannot be considered a JAM Stack application if:
-It is built with server-side cms
-It is a monolithic server-run app that relies on a backend language 
-It is a SPA that uses isomorphic rendering to build views at runtime
+
+- It is built with server-side cms
+- It is a monolithic server-run app that relies on a backend language 
+- It is a SPA that uses isomorphic rendering to build views at runtime
 
 So applications and websites built with a headless CMS or a BaaS are not necessarily JAM Stack examples, but they can be, depending on how their frontend is built and hosted.
 
