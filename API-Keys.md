@@ -8,5 +8,7 @@
 
 ## Further Reading
 https://cloud.google.com/endpoints/docs/openapi/when-why-api-key
+
 https://rapidapi.com/blog/api-glossary/api-key/
+
 https://swagger.io/docs/specification/authentication/api-keys/
