@@ -15,16 +15,19 @@ You can see the cookies that Chrome has set by clicking on the yellow arrow (use
 A session is what it sounds like—it is a user’s interaction event or a series of connected interaction events—“a pool of data associated related to an active connection”. Session information is stored server-side. After a user is authenticated, a session is begun. The sessionId is saved server-side, often in a key-value store like Redis. A cookie is set with the sessionId. The sessionId is long, and pretty much impossible to guess. With each subsequent request to the website, the user’s browser sends back the sessionId. The server checks for the sessionId against stored values and then accesses the user’s stored information to provide the response. If the sessionId doesn’t exist, the user has to login and a new sessionId will be set. 
 What attributes can you set on them?
 
-	•	Path: cookie will be sent only on requests that include the path value, so usually you want to set it to root. The default is whatever the path is when the cookie is set.
-	⁃	path=/ 
-	•	SameSite: prevents cookies from being sent with requests that are initiated by other sites. 
-	⁃	SameSite=None — default, cookie is always sent, no restrictions
-	⁃	SameSite=Lax — sends cookie on top-level requests that originate from another website, but not from subresource requests. This prevents Cross-Site Request Forgery, and should be the default.
-	⁃	SameSite=Strict — Cookie is never sent with requests that originate from a different website
-	•	HttpOnly: Boolean value. If true, cookie will be sent with HTTP requests, but it will not be available from JavaScript inside a web page. Prevents Cross-Site Scripting attacks.
-	•	Secure: Cookie will only be sent over a secure connection. Should be set to true or it can be used to hijack a user’s session. Even better, use HTTPS for the entire site.
-	•	Session: 
-	•	Expires: Sets expiration date. 30 days is common. To invalidate a cookie, set to a past date.
+Path: cookie will be sent only on requests that include the path value, so usually you want to set it to root. The default is whatever the path is when the cookie is set.
+- path=/  
+
+SameSite: prevents cookies from being sent with requests that are initiated by other sites. 
+- SameSite=None — default, cookie is always sent, no restrictions
+- SameSite=Lax — sends cookie on top-level requests that originate from another website, but not from subresource requests. This prevents Cross-Site Request Forgery, and should be the default.
+- SameSite=Strict — Cookie is never sent with requests that originate from a different website
+
+HttpOnly: Boolean value. If true, cookie will be sent with HTTP requests, but it will not be available from JavaScript inside a web page. Prevents Cross-Site Scripting attacks.
+
+Secure: Cookie will only be sent over a secure connection. Should be set to true or it can be used to hijack a user’s session. Even better, use HTTPS for the entire site.
+
+Expires: Sets expiration date. 30 days is common. To invalidate a cookie, set to a past date.
 
 
 ## A formula for a safe cookie:  
