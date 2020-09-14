@@ -12,3 +12,4 @@ access to the parent window. `noopener` prevents the parent window from being re
 ```
 
 https://bolajiayodeji.com/the-security-vulnerabilities-of-the-target_blank-attribute-cka3hgvyw01axdjs13r1xgc7m
+https://medium.com/sedeo/how-to-fix-target-blank-a-security-and-performance-issue-in-web-pages-2118eba1ce2f
